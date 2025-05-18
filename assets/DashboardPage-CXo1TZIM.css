@@ -1,0 +1,803 @@
+._dashboard-welcome_8awk8_1 {
+  background: #fff;
+  border-radius: 26px;
+  box-shadow: 0 6px 24px 0 rgba(80,80,180,0.07);
+  padding: 40px;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  margin-bottom: 48px;
+  min-height: 140px;
+  gap: 40px;
+  position: relative;
+}
+._dashboard-welcome_8awk8_1::after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0; right: 0; bottom: 0; height: 32px;
+  pointer-events: none;
+  border-radius: 0 0 26px 26px;
+  background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(80,80,180,0.10) 100%);
+  z-index: 3;
+}
+._welcome-block_8awk8_24 {
+  flex: 1;
+}
+._welcome-title_8awk8_27 {
+  font-family: 'Inter', 'Manrope', 'Mulish', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  color: #21233b;
+}
+._welcome-accent_8awk8_33 {
+  color: #a6ff4d;
+  font-weight: 800;
+}
+._progress-bar-area_8awk8_37 {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 16px 0 0 0;
+}
+._goal-inline_8awk8_43 {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+._goal-label_8awk8_51 {
+  color: #888ca7;
+  font-weight: 600;
+  margin-right: 4px;
+}
+._goal-value_8awk8_56 {
+  color: #a6ff4d;
+  font-weight: 700;
+  font-size: 1.25rem;
+  margin-right: 10px;
+}
+._progress-percent_8awk8_62 {
+  color: #7c3aed;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-left: 6px;
+}
+._goal-value_8awk8_56 {
+  color: #a6ff4d;
+  font-weight: 700;
+  margin-left: 0.5em;
+}
+._progress-bar_8awk8_37 {
+  background: #f3f3fa;
+  border-radius: 8px;
+  height: 14px;
+  width: 280px;
+  margin: 18px 0 0 0;
+  position: relative;
+  overflow: hidden;
+}
+._progress-bar-fill_8awk8_82 {
+  background: linear-gradient(90deg,#a6ff4d 0%,#b490ff 100%);
+  border-radius: 8px;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  transition: width 0.4s cubic-bezier(.77,0,.18,1);
+}
+._progress-bar-value_8awk8_92 {
+  background: #21233b;
+  color: #fff;
+  font-size: 0.92rem;
+  padding: 2px 12px;
+  border-radius: 8px;
+  position: absolute;
+  top: -28px;
+  z-index: 2;
+  white-space: nowrap;
+  left: 0;
+  transform: translateX(-50%);
+  transition: left 0.4s cubic-bezier(.77,0,.18,1);
+}
+._plan-block_8awk8_106 {
+  flex: 1;
+  margin-left: 32px;
+}
+._plan-title_8awk8_110 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #6f7a9e;
+  margin-bottom: 16px;
+}
+._plan-list_8awk8_116 {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+._plan-item_8awk8_121 {
+  display: flex;
+  align-items: center;
+  font-size: 1.08rem;
+  margin-bottom: 8px;
+  transition: background 0.15s;
+  border-radius: 8px;
+  padding: 4px 10px;
+}
+._plan-item_8awk8_121:hover {
+  background: #f3ffea;
+}
+._plan-checkbox-label_8awk8_133 {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+._plan-checkbox_8awk8_133 {
+  margin-right: 14px;
+  accent-color: #a6ff4d;
+  width: 20px;
+  height: 20px;
+}
+@media (max-width: 800px) {
+  ._dashboard-welcome_8awk8_1 {
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+  }
+  ._plan-block_8awk8_106 {
+    margin-left: 0;
+    margin-top: 24px;
+  }
+  ._progress-bar_8awk8_37 {
+    width: 100%;
+  }
+}
+._goalLabel_8awk8_158 {
+  color: #888ca7;
+  font-weight: 600;
+}
+._goalValue_8awk8_162 {
+  color: #b0ff38;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+._progressPercent_8awk8_167 {
+  color: #7c3aed;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+._progressBarWrap_8awk8_172 {
+  margin-bottom: 12px;
+}
+._progressBarBg_8awk8_175 {
+  width: 260px;
+  height: 7px;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #e9e6fc 0%, #b0ff38 100%);
+  overflow: hidden;
+}
+._progressBarFill_8awk8_182 {
+  height: 100%;
+  background: linear-gradient(90deg, #b0ff38 0%, #7c3aed 100%);
+  border-radius: 8px;
+  transition: width 0.4s cubic-bezier(.4,1.1,.5,1);
+}
+._planBlock_8awk8_188 {
+  flex: 0 0 320px;
+  background: #f9fafc;
+  border-radius: 22px;
+  box-shadow: 0 2px 12px 0 rgba(176,255,56,0.07);
+  padding: 28px 22px 22px 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+._planTitle_8awk8_198 {
+  font-size: 1.23rem;
+  font-weight: 700;
+  color: #23234c;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+._planIcon_8awk8_207 {
+  color: #7c3aed;
+  font-size: 1.3rem;
+}
+._planList_8awk8_211 {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+._planItem_8awk8_219 {
+  font-size: 1.08rem;
+  color: #23234c;
+}
+._checkboxLabel_8awk8_223 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  font-weight: 600;
+}
+._checkbox_8awk8_223 {
+  display: none;
+}
+._customCheckbox_8awk8_233 {
+  width: 22px;
+  height: 22px;
+  border-radius: 8px;
+  border: 2.5px solid #b0ff38;
+  background: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 2px;
+  transition: border 0.18s, background 0.18s, box-shadow 0.18s;
+  position: relative;
+}
+._checkbox_8awk8_223:checked + ._customCheckbox_8awk8_233 {
+  background: #b0ff38;
+  border-color: #7c3aed;
+}
+._checkbox_8awk8_223:checked + ._customCheckbox_8awk8_233::after {
+  content: '';
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-radius: 4px;
+  background: #7c3aed;
+  position: absolute;
+  left: 4px;
+  top: 4px;
+}
+/* Основной контейнер календаря */
+.supply-calendar {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  padding: 16px 24px;
+  overflow: hidden;
+}
+
+/* Заголовок календаря */
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.calendar-title {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.calendar-icon {
+  color: #C0FF4A;
+  margin-right: 8px;
+  font-size: 14px;
+}
+
+/* Элементы управления календарем */
+.calendar-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.calendar-nav-btn {
+  background: none;
+  border: none;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: #333;
+  cursor: pointer;
+}
+
+.calendar-month {
+  font-size: 14px;
+  color: #333;
+  min-width: 100px;
+  text-align: center;
+}
+
+/* Основная сетка календаря */
+.calendar-layout {
+  display: grid;
+  grid-template-columns: 1fr 250px;
+  gap: 20px;
+}
+
+.calendar-grid {
+  background-color: #fff;
+}
+
+.upcoming-events {
+  width: 100%;
+}
+
+/* Заголовок списка событий */
+.upcoming-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 12px;
+  margin-top: 0;
+}
+
+/* Список ближайших событий */
+.event-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Элемент события в списке */
+.event-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+  border: 1px solid #f0f0f0;
+}
+
+/* Дата события */
+.event-date {
+  font-size: 13px;
+  font-weight: 500;
+  color: #333;
+  min-width: 40px;
+}
+
+/* Содержимое события */
+.event-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Иконка события */
+.event-icon {
+  font-size: 14px;
+}
+
+/* Заголовок события */
+.event-title {
+  font-size: 13px;
+  color: #333;
+}
+
+/* Стили для точки в ячейке календаря */
+.calendar-cell-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  right: 2px;
+}
+
+/* Стили для пустого состояния */
+.no-events {
+  font-size: 13px;
+  color: #999;
+  padding: 8px 0;
+}
+
+/* Стили для календаря Ant Design */
+.calendar-widget {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.calendar-widget .ant-picker-panel {
+  border: none;
+}
+
+.calendar-widget .ant-picker-calendar-header {
+  display: none;
+}
+
+.calendar-widget .ant-picker-content th {
+  padding: 8px 0;
+  font-size: 12px;
+  color: #666;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.calendar-widget .ant-picker-cell {
+  padding: 2px 0;
+}
+
+.calendar-widget .ant-picker-cell-in-view.ant-picker-cell-selected .ant-picker-cell-inner {
+  background-color: #C0FF4A;
+  color: #333;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .calendar-layout {
+    grid-template-columns: 1fr;
+  }
+  
+  .upcoming-events {
+    margin-top: 20px;
+  }
+}
+  
+
+/* Основной контейнер дашборда */
+.dashboard-root {
+  width: 100%;
+  max-width: 1800px;
+  min-width: 320px;
+  margin: 0 auto;
+  padding: 32px 48px 40px;
+  box-sizing: border-box;
+  background: none;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+/* Адаптивные отступы */
+@media (max-width: 1200px) {
+  .dashboard-root {
+    padding: 24px 40px 32px;
+    gap: 32px;
+  }
+}
+
+@media (max-width: 900px) {
+  .dashboard-root {
+    padding: 70px 32px 32px;
+    gap: 28px;
+  }
+}
+
+@media (max-width: 600px) {
+  .dashboard-root {
+    padding: 66px 20px 24px;
+    gap: 20px;
+  }
+}
+
+/* Секция KPI-карточек */
+.dashboard-kpi-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Основная секция с графиком и историей */
+.dashboard-main-section {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  gap: 32px;
+  width: 100%;
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+
+/* Контейнер графика */
+.dashboard-chart-container {
+  background: #fff;
+  border-radius: 24px;
+  box-shadow: 0 6px 24px 0 rgba(80, 80, 180, 0.07);
+  padding: 32px;
+  min-height: 400px;
+  max-width: 1300px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Заголовок графика с вкладками */
+.dashboard-chart-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 16px;
+}
+
+/* Вкладки графика */
+.dashboard-chart-tabs {
+  display: flex;
+  gap: 16px;
+}
+
+.dashboard-chart-tab {
+  background: none;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dashboard-chart-tab:hover {
+  background: rgba(124, 58, 237, 0.08);
+  color: #7c3aed;
+}
+
+.dashboard-chart-tab.active {
+  background: rgba(124, 58, 237, 0.12);
+  color: #7c3aed;
+}
+
+.tab-icon {
+  font-size: 18px;
+}
+
+/* Содержимое графика */
+.dashboard-chart-content {
+  flex: 1;
+  min-height: 340px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Контейнер истории */
+.dashboard-history-container {
+  background: #fff;
+  border-radius: 24px;
+  box-shadow: 0 6px 24px 0 rgba(80, 80, 180, 0.07);
+  padding: 28px 24px;
+  width: 100%;
+  min-width: 330px;
+  max-width: 390px;
+  height: 100%;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Секция календаря */
+.dashboard-calendar-section {
+  background: #fff;
+  border-radius: 24px;
+  box-shadow: 0 6px 24px 0 rgba(80, 80, 180, 0.07);
+  padding: 32px;
+  width: 100%;
+  min-height: 340px;
+  max-height: 420px;
+}
+
+/* Адаптивность */
+@media (max-width: 1200px) {
+  .dashboard-main-section {
+    grid-template-columns: minmax(0, 1fr) 340px;
+    gap: 24px;
+  }
+  
+  .dashboard-chart-container {
+    padding: 28px 24px;
+  }
+  
+  .dashboard-history-container {
+    min-width: 300px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .dashboard-main-section {
+    grid-template-columns: 1fr 320px;
+    gap: 24px;
+  }
+}
+
+@media (max-width: 900px) {
+  .dashboard-main-section {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  
+  .dashboard-history-container {
+    max-width: 100%;
+    min-height: 300px;
+  }
+  
+  .dashboard-chart-container {
+    padding: 24px 20px;
+    min-height: 320px;
+  }
+  
+  .dashboard-calendar-section {
+    padding: 24px 20px;
+    min-height: 300px;
+  }
+}
+
+@media (max-width: 600px) {
+  .dashboard-chart-container {
+    padding: 20px 16px;
+    min-height: 300px;
+  }
+  
+  .dashboard-chart-header {
+    margin-bottom: 12px;
+  }
+  
+  .dashboard-chart-tabs {
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  
+  .dashboard-chart-tab {
+    padding: 8px 12px;
+    font-size: 13px;
+    flex: 1;
+    min-width: 80px;
+    justify-content: center;
+  }
+  
+  .tab-icon {
+    font-size: 16px;
+  }
+  
+  .dashboard-history-container {
+    padding: 20px 16px;
+    min-height: 280px;
+  }
+  
+  .dashboard-calendar-section {
+    padding: 20px 16px;
+    min-height: 300px;
+  }
+  
+  .history-list-item {
+    padding: 12px;
+  }
+  
+  .history-item-title {
+    font-size: 14px;
+  }
+  
+  .history-item-profit {
+    font-size: 16px;
+  }
+  
+  .history-item-margin {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 400px) {
+  .dashboard-chart-tab {
+    padding: 6px 8px;
+    font-size: 12px;
+  }
+  
+  .tab-icon {
+    font-size: 14px;
+  }
+  
+  .dashboard-chart-content {
+    min-height: 260px;
+  }
+}
+
+/* Стили для истории расчетов */
+.dashboard-block-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #232946;
+  margin-bottom: 16px;
+}
+
+.dashboard-block-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow-y: auto;
+  max-height: 320px;
+  padding-right: 4px;
+}
+
+.history-list-item {
+  display: flex;
+  flex-direction: column;
+  padding: 12px 16px;
+  background: #f8f9fd;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.history-list-item:hover {
+  background: #f0f2fd;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.history-item-num {
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 4px;
+}
+
+.history-item-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #232946;
+  margin-bottom: 8px;
+}
+
+.history-item-profit {
+  font-size: 18px;
+  font-weight: 700;
+  color: #2ecc40;
+  margin-bottom: 4px;
+}
+
+.history-item-margin {
+  font-size: 15px;
+  font-weight: 600;
+  color: #a259ff;
+}
+
+.history-item-date {
+  font-size: 12px;
+  color: #888;
+  margin-top: 6px;
+  align-self: flex-end;
+}
+
+.history-more-btn {
+  background: none;
+  border: none;
+  color: #7c3aed;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 16px;
+  margin-top: 12px;
+  cursor: pointer;
+  align-self: center;
+  transition: all 0.2s ease;
+  border-radius: 8px;
+}
+
+.history-more-btn:hover {
+  background: rgba(124, 58, 237, 0.08);
+}
+
+.dashboard-block-placeholder {
+  color: #888;
+  font-size: 14px;
+  text-align: center;
+  padding: 24px 0;
+}
+
