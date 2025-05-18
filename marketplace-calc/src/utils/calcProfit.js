@@ -19,70 +19,54 @@ export function calculateProductMetrics(data, isAdvancedMode = false) {
  * @returns {Object} - Объект с результатами расчетов
  */
 function calculateSimpleMetrics(data) {
-  // Обязательные входные данные
+  // Новая структура, ориентированная на калькулятор Ozon
   const {
-    pricePurchaseUnit = 0,     // Цена закупки за 1 ед.
-    quantity = 1,              // Кол-во
-    deliveryTotal = 0,         // Доставка до склада (вся партия)
-    packageTotal = 0,          // Упаковка (вся партия)
-    marketplaceServicesPerUnit = 0, // Все услуги МП на 1 ед.
-    priceSell = 0,             // Цена продажи
-    taxRate = 6,               // Ставка налога УСН (по умолчанию 6%)
-    goalProfit = 0             // Цель по прибыли (опц.)
+    priceSell = 0, // Цена продажи
+    ozonCommissionPercent = 20, // Комиссия Ozon, % (по умолчанию 20)
+    acquiringFee = 11, // Эквайринг, ₽
+    processingAndDelivery = 76, // Обработка и доставка, ₽
+    returnsAndCancels = 3, // Возвраты и отмены, ₽
+    costPerUnit = 0, // Себестоимость за шт
+    taxRate = 6, // Налог на прибыль, %
+    otherCosts = 0, // Прочие затраты, ₽ на шт
+    salesCount = 1, // Количество продаж в месяц/партии
+    buyoutPercent = 100 // % выкупа (не используется в расчёте прибыли за шт)
   } = data;
 
-  // 1. Доставка на 1 ед.
-  const deliveryPerUnit = deliveryTotal / quantity;
-  
-  // 2. Упаковка на 1 ед.
-  const packagePerUnit = packageTotal / quantity;
-  
-  // 3. Себестоимость (сумма всех затрат)
-  const costPrice = pricePurchaseUnit + deliveryPerUnit + packagePerUnit + marketplaceServicesPerUnit;
-  
-  // 4. Валовая прибыль на 1 ед.
-  const grossProfit = priceSell - costPrice;
-  
-  // 5. Налог УСН
+  // Комиссия Ozon
+  const ozonCommission = priceSell * (ozonCommissionPercent / 100);
+
+  // Валовая прибыль до налога и прочих затрат
+  const grossProfit = priceSell - ozonCommission - acquiringFee - processingAndDelivery - returnsAndCancels - costPerUnit;
+
+  // Налог на прибыль
   const taxAmount = grossProfit * (taxRate / 100);
-  
-  // 6. Чистая прибыль на 1 ед.
-  const netProfit = grossProfit - taxAmount;
-  
-  // 7. Маржинальность
-  const margin = (netProfit / priceSell) * 100;
-  
-  // 8. Оборотные средства
-  const workingCapital = costPrice * quantity;
-  
-  // 9. Нужно продать для цели
-  const targetUnits = goalProfit > 0 ? Math.ceil(goalProfit / netProfit) : 0;
+
+  // Чистая прибыль на 1 шт
+  const netProfit = grossProfit - taxAmount - otherCosts;
+
+  // Маржа
+  const margin = priceSell > 0 ? (netProfit / priceSell) * 100 : 0;
+
+  // Себестоимость (по калькулятору Ozon — только costPerUnit)
+  const cost = costPerUnit;
+
+  // Оборотка (оборот по партии)
+  const turnover = priceSell * salesCount;
 
   return {
-    // Расчеты по единице товара
-    deliveryPerUnit: roundToTwo(deliveryPerUnit),      // Доставка на 1 ед.
-    packagePerUnit: roundToTwo(packagePerUnit),        // Упаковка на 1 ед.
-    costPrice: roundToTwo(costPrice),                  // Себестоимость
-    grossProfit: roundToTwo(grossProfit),              // Валовая прибыль на 1 ед.
-    taxAmount: roundToTwo(taxAmount),                  // Налог УСН
-    netProfit: roundToTwo(netProfit),                  // Чистая прибыль на 1 ед.
-    
-    // Общие показатели
-    margin: roundToTwo(margin),                        // Маржинальность (%)
-    workingCapital: roundToTwo(workingCapital),        // Оборотные средства
-    targetUnits: targetUnits,                          // Нужно продать для цели
-    
-    // Исходные данные (для удобства)
-    input: {
-      pricePurchaseUnit,
-      quantity,
-      deliveryTotal,
-      packageTotal,
-      marketplaceServicesPerUnit,
-      priceSell,
-      taxRate,
-      goalProfit
-    }
+    profit: roundToTwo(netProfit), // Чистая прибыль за шт
+    margin: roundToTwo(margin),
+    cost: roundToTwo(cost), // Себестоимость 1 ед.
+    turnover: roundToTwo(turnover),
+    profitMonth: roundToTwo(netProfit * salesCount),
+    ozonCommission: roundToTwo(ozonCommission),
+    acquiringFee: roundToTwo(acquiringFee),
+    processingAndDelivery: roundToTwo(processingAndDelivery),
+    returnsAndCancels: roundToTwo(returnsAndCancels),
+    otherCosts: roundToTwo(otherCosts),
+    taxAmount: roundToTwo(taxAmount),
+    buyoutPercent: roundToTwo(buyoutPercent)
   };
 }
 

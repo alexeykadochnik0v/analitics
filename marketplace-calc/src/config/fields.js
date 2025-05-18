@@ -1,15 +1,32 @@
 // Конфиги полей для простого и расширенного режима калькулятора
 
 export const simpleFields = [
-  { name: 'productName', label: 'Название товара', required: false, type: 'text', placeholder: 'Введите название' },
-  { name: 'pricePurchaseUnit', label: 'Цена закупки за 1 ед.', required: true, type: 'number', suffix: '₽' },
-  { name: 'quantity', label: 'Количество', required: true, type: 'number', suffix: 'шт.' },
-  { name: 'deliveryTotal', label: 'Доставка до склада (партия)', required: true, type: 'number', suffix: '₽' },
-  { name: 'packageTotal', label: 'Упаковка (партия)', required: true, type: 'number', suffix: '₽' },
-  { name: 'marketplaceServicesPerUnit', label: 'Услуги/комиссии МП (на 1 ед.)', required: true, type: 'number', suffix: '₽', tooltip: 'Комиссии, логистика, хранение и др. расходы на 1 ед.' },
-  { name: 'priceSell', label: 'Цена продажи', required: true, type: 'number', suffix: '₽' },
-  { name: 'taxRate', label: 'Ставка налога', required: true, type: 'number', suffix: '%', defaultValue: '6' },
-  { name: 'goalProfit', label: 'Желаемая прибыль', required: false, type: 'number', suffix: '₽' }
+  // Основные параметры
+  { name: 'category', label: 'Категория', required: true, type: 'select', options: [
+    { label: 'Гигиена и уход для животных', value: 'pet-care' },
+    { label: 'Дом и сад', value: 'home-garden' },
+    { label: 'Одежда', value: 'clothes' },
+    { label: 'Электроника', value: 'electronics' },
+    { label: 'Другое', value: 'other' }
+  ], placeholder: 'Выберите категорию' },
+  { name: 'priceSell', label: 'Цена товара', required: true, type: 'number', suffix: '₽', placeholder: 'Например, 4200' },
+  { name: 'weight', label: 'Вес, кг', required: true, type: 'number', step: 0.001, suffix: 'кг', placeholder: '0.51' },
+  // Габариты
+  { name: 'length', label: 'Длина, см', required: true, type: 'number', suffix: 'см', placeholder: '34' },
+  { name: 'width', label: 'Ширина, см', required: true, type: 'number', suffix: 'см', placeholder: '15' },
+  { name: 'height', label: 'Высота, см', required: true, type: 'number', suffix: 'см', placeholder: '6' },
+  { name: 'volume', label: 'Объём, л', required: false, type: 'number', suffix: 'л', placeholder: '3.06', disabled: true },
+
+  // Блок "Себестоимость партии"
+  { name: 'costPerUnit', label: 'Себестоимость товара, ₽ за шт', required: true, type: 'number', suffix: '₽', placeholder: '1400' },
+  { name: 'batchSize', label: 'Кол-во товаров в партии, шт', required: true, type: 'number', suffix: 'шт', placeholder: '100' },
+  { name: 'batchCost', label: 'Стоимость закупки партии, ₽', required: true, type: 'number', suffix: '₽', placeholder: '140000' },
+
+  // Прочие расходы
+  { name: 'otherCosts', label: 'Прочие затраты, ₽ на шт', required: false, type: 'number', suffix: '₽', placeholder: '100' },
+  { name: 'salesCount', label: 'Количество продаж в месяц, шт', required: false, type: 'number', suffix: 'шт', placeholder: '30' },
+  { name: 'buyoutPercent', label: 'Выкуп, %', required: false, type: 'number', suffix: '%', placeholder: '95' },
+  { name: 'taxRate', label: 'Налог на прибыль, %', required: false, type: 'number', suffix: '%', placeholder: '6' }
 ];
 
 export const advancedFields = [

@@ -106,9 +106,7 @@ const CalculatorPage = ({ user }) => {
           </div>
         </div>
         <div className="calculator-col-right">
-          <div className="kpi-wide">
-            <DashboardMetrics results={results} />
-          </div>
+          {results && <DashboardMetrics results={results} />}
           <div className="history-card">
             <HistoryBlock history={history} />
           </div>
@@ -173,6 +171,28 @@ const CalculatorPage = ({ user }) => {
     const calculationResults = calculateProductMetrics(calculationData, isAdvancedMode);
     setResults(calculationResults);
     setIsCalculated(true);
+
+    // --- Добавление расчёта в историю ---
+    const historyItem = {
+      productName: formData.productName || 'Без названия',
+      profit: isAdvancedMode
+        ? (calculationResults.netProfitUnit ?? calculationResults.netProfitTotal ?? calculationResults.profit ?? 0)
+        : (calculationResults.profit ?? 0),
+      margin: isAdvancedMode
+        ? (calculationResults.marginPercent ?? calculationResults.margin ?? 0)
+        : (calculationResults.margin ?? 0),
+      date: new Date().toISOString(),
+      // Для модального окна — всё остальное в calculationResults (можно передавать item целиком при клике)
+      details: calculationResults
+    };
+    let lastResults = [];
+    try {
+      lastResults = JSON.parse(localStorage.getItem('mpcalc_lastResults') || '[]');
+    } catch {}
+    lastResults.unshift(historyItem);
+    localStorage.setItem('mpcalc_lastResults', JSON.stringify(lastResults.slice(0, 30)));
+    setHistory(lastResults.slice(0, 30));
+    // --- Конец добавления ---
   };
   
   const handleSaveCalculation = async () => {

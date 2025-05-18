@@ -2,22 +2,27 @@ import React, { useRef, useEffect } from 'react';
 import { Input, Button, Form, Checkbox, Space, Typography } from 'antd';
 import { EditFilled, ReloadOutlined, CalculatorOutlined, ThunderboltFilled } from '@ant-design/icons';
 import { simpleFields, advancedFields } from '../config/fields';
-import { motion, AnimatePresence } from 'framer-motion';
+
 import ModeToggle from './ModeToggle/ModeToggle';
 
 const { Title } = Typography;
 
 const TEMPLATES = {
   simple: {
-    productName: 'Футболка',
-    pricePurchaseUnit: 350,
-    quantity: 100,
-    deliveryTotal: 2500,
-    packageTotal: 600,
-    marketplaceServicesPerUnit: 120,
-    priceSell: 990,
-    taxRate: 6,
-    goalProfit: 20000
+    category: 'Дом и сад',
+    priceSell: 600,
+    weight: 0.216,
+    length: 26,
+    width: 7,
+    height: 5,
+    volume: 0.91,
+    costPerUnit: 120,
+    batchSize: 240,
+    batchCost: 28795,
+    otherCosts: 20,
+    salesCount: 240,
+    buyoutPercent: 95,
+    taxRate: 6
   },
   advanced: {
     productName: 'Футболка',
@@ -107,14 +112,13 @@ const CalcCard = ({
           const now = new Date();
           const date = now.toLocaleDateString() + ' ' + now.toLocaleTimeString().slice(0,5);
           const productName = formData.productName || 'Без названия';
-          // Оставляем только нужные ключи для Dashboard
+          // Сохраняем только нужные поля для истории
           const toSave = {
-            netProfit: calcResult.netProfit ?? calcResult.grossProfit ?? 0,
-            margin: calcResult.margin ?? 0,
-            costPrice: calcResult.costPrice ?? 0,
-            workingCapital: calcResult.workingCapital ?? 0,
             productName,
-            date
+            profit: calcResult.profit ?? 0,
+            margin: calcResult.margin ?? 0,
+            date: new Date().toISOString(),
+            details: calcResult
           };
           const updated = [toSave, ...prev].slice(0, 20);
           localStorage.setItem('mpcalc_lastResults', JSON.stringify(updated));
@@ -158,57 +162,68 @@ const CalcCard = ({
   };
 
   return (
-    <motion.div 
-      className="calc-card"
-      style={{ width: '100%' }}
-      initial={{ opacity: 0, y: 40 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-    >
+    <div className="calc-card" style={{ width: '100%' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 18, justifyContent: 'center', width: '100%' }}>
         <CalculatorOutlined style={{ fontSize: 30, color: '#7c3aed' }} />
         <Title level={3} style={{ margin: 0, fontWeight: 800, letterSpacing: 1, color: '#23234c' }}>Калькулятор</Title>
       </div>
-      <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
+
         <ModeToggle isAdvancedMode={isAdvancedMode} setIsAdvancedMode={setIsAdvancedMode} style={{ width: '100%' }} />
-      </motion.div>
       <Form
         layout="vertical"
         form={form}
         onValuesChange={handleChange}
         autoComplete="off"
       >
-        <AnimatePresence initial={false}>
-          {fields.map((field, idx) => (
-            <motion.div
-              key={field.name}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.28, delay: idx * 0.04 }}
-            >
-              <Form.Item
-                name={field.name}
-                label={field.label}
-                rules={field.required ? [{ required: true, message: 'Обязательное поле' }] : []}
-                valuePropName={field.type === 'checkbox' ? 'checked' : 'value'}
-                validateTrigger={['onChange', 'onBlur']}
-              >
-                {field.type === 'checkbox' ? (
-                  <Checkbox>{field.label}</Checkbox>
-                ) : (
-                  <Input
-                    type={field.type}
-                    placeholder={field.placeholder || `Введите ${field.label.toLowerCase()}`}
-                    suffix={field.suffix}
-                    ref={idx === 0 ? firstErrorRef : undefined}
-                    style={{ fontSize: 16, padding: '8px 12px', borderRadius: 8 }}
-                  />
-                )}
-              </Form.Item>
-            </motion.div>
-          ))}
-        </AnimatePresence>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
+  {/* Категория, цена, вес */}
+  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+    <Form.Item
+      name="category"
+      label="Категория"
+      rules={[{ required: true, message: 'Обязательное поле' }]}
+    >
+      <Input type="text" placeholder="Выберите категорию" style={{ fontSize: 16, padding: '8px 12px', borderRadius: 8 }} />
+    </Form.Item>
+    <Form.Item
+      name="priceSell"
+      label="Цена товара"
+      rules={[{ required: true, message: 'Обязательное поле' }]}
+    >
+      <Input type="number" placeholder="Например, 4200" suffix="₽" style={{ fontSize: 16, padding: '8px 12px', borderRadius: 8 }} />
+    </Form.Item>
+    <Form.Item
+      name="weight"
+      label="Вес, кг"
+      rules={[{ required: true, message: 'Обязательное поле' }]}
+    >
+      <Input type="number" placeholder="0.51" suffix="кг" step="0.001" style={{ fontSize: 16, padding: '8px 12px', borderRadius: 8 }} />
+    </Form.Item>
+  </div>
+  {/* Габариты */}
+  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 12 }}>
+    <Form.Item name="length" label="Длина, см" rules={[{ required: true, message: 'Обязательное поле' }]}> <Input type="number" placeholder="34" suffix="см" style={{ fontSize: 16, borderRadius: 8 }} /> </Form.Item>
+    <Form.Item name="width" label="Ширина, см" rules={[{ required: true, message: 'Обязательное поле' }]}> <Input type="number" placeholder="15" suffix="см" style={{ fontSize: 16, borderRadius: 8 }} /> </Form.Item>
+    <Form.Item name="height" label="Высота, см" rules={[{ required: true, message: 'Обязательное поле' }]}> <Input type="number" placeholder="6" suffix="см" style={{ fontSize: 16, borderRadius: 8 }} /> </Form.Item>
+    <Form.Item name="volume" label="Объём, л"> <Input type="number" placeholder="3.06" suffix="л" disabled style={{ fontSize: 16, borderRadius: 8, background: '#f6f6fa' }} /> </Form.Item>
+  </div>
+  {/* Блок Себестоимость партии */}
+  <div style={{ margin: '18px 0 0 0', padding: '14px 10px', background: '#f7f7fc', borderRadius: 12, border: '1px solid #ececec' }}>
+    <div style={{ fontWeight: 600, marginBottom: 10, fontSize: 16, color: '#23234c' }}>Себестоимость партии</div>
+    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 12 }}>
+      <Form.Item name="costPerUnit" label="Себестоимость товара, ₽ за шт" rules={[{ required: true, message: 'Обязательное поле' }]}> <Input type="number" placeholder="1400" suffix="₽" style={{ fontSize: 16, borderRadius: 8 }} /> </Form.Item>
+      <Form.Item name="batchSize" label="Кол-во товаров в партии, шт" rules={[{ required: true, message: 'Обязательное поле' }]}> <Input type="number" placeholder="100" suffix="шт" style={{ fontSize: 16, borderRadius: 8 }} /> </Form.Item>
+      <Form.Item name="batchCost" label="Стоимость закупки партии, ₽" rules={[{ required: true, message: 'Обязательное поле' }]}> <Input type="number" placeholder="140000" suffix="₽" style={{ fontSize: 16, borderRadius: 8 }} /> </Form.Item>
+    </div>
+  </div>
+  {/* Прочие расходы и продажи */}
+  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 12 }}>
+    <Form.Item name="otherCosts" label="Прочие затраты, ₽ на шт"> <Input type="number" placeholder="100" suffix="₽" style={{ fontSize: 16, borderRadius: 8 }} /> </Form.Item>
+    <Form.Item name="salesCount" label="Количество продаж в месяц, шт"> <Input type="number" placeholder="30" suffix="шт" style={{ fontSize: 16, borderRadius: 8 }} /> </Form.Item>
+    <Form.Item name="buyoutPercent" label="Выкуп, %"> <Input type="number" placeholder="95" suffix="%" style={{ fontSize: 16, borderRadius: 8 }} /> </Form.Item>
+    <Form.Item name="taxRate" label="Налог на прибыль, %"> <Input type="number" placeholder="6" suffix="%" style={{ fontSize: 16, borderRadius: 8 }} /> </Form.Item>
+  </div>
+</div>
         <Space style={{ marginTop: 24, display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 16, width: '100%' }} direction="vertical">
           <Button
             onClick={handleCalculate}
@@ -237,18 +252,7 @@ const CalcCard = ({
           </Button>
         </Space>
       </Form>
-      {isCalculated && results && (
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} style={{ marginTop: 40 }}>
-          <Title level={5} style={{ textAlign: 'center' }}>Результаты</Title>
-          <div style={{ display: 'flex', gap: 32, justifyContent: 'center', flexWrap: 'wrap', fontSize: 17 }}>
-            <div><b>Чистая прибыль:</b> {results.profit}</div>
-            <div><b>Маржа:</b> {results.margin}%</div>
-            <div><b>Себестоимость:</b> {results.cost}</div>
-            <div><b>Оборотка:</b> {results.turnover}</div>
-          </div>
-        </motion.div>
-      )}
-    </motion.div>
+    </div>
   );
 };
 
