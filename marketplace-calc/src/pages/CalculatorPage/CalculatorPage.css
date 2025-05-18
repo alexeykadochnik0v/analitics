@@ -1,3 +1,4 @@
+/* Заголовок калькулятора */
 .calculator-header {
   width: 100%;
   display: flex;
@@ -5,11 +6,13 @@
   margin-top: 24px;
   margin-bottom: 12px;
 }
+
 .calculator-header-inner {
   max-width: 520px;
   width: 100%;
   text-align: left;
 }
+
 .calculator-title {
   font-size: 2rem;
   font-weight: 700;
@@ -17,6 +20,7 @@
   letter-spacing: -0.5px;
   color: #181834;
 }
+
 .calculator-subtitle {
   color: #888;
   font-size: 1.08rem;
@@ -33,27 +37,51 @@
   align-items: flex-start;
   padding: 0 24px 64px 24px;
 }
+
+@media (max-width: 1100px) {
+  .calculator-main-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+@media (max-width: 600px) {
+  .calculator-main-grid {
+    padding: 0 16px 40px 16px;
+    gap: 24px;
+  }
+}
 .calculator-col-left {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 520px;
   max-width: 600px;
   width: 100%;
   gap: 36px;
+  margin: 0 auto;
 }
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+@media (max-width: 600px) {
+  .calculator-col-left {
+    gap: 24px;
+  }
+}
+
 .calculator-col-right {
-  min-width: 520px;
   max-width: 600px;
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 32px;
   align-items: stretch;
+  margin: 0 auto;
+}
+
+@media (max-width: 600px) {
+  .calculator-col-right {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
 }
 
 .calculator-card {
@@ -61,13 +89,19 @@
   border-radius: 28px;
   box-shadow: 0 4px 32px 0 rgba(124,58,237,0.06);
   max-width: 520px;
-  min-width: 440px;
   width: 100%;
   padding: 32px 24px 28px 24px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+@media (max-width: 600px) {
+  .calculator-card {
+    padding: 24px 16px 20px 16px;
+    border-radius: 20px;
+  }
 }
 
 .metric-card, .history-card, .tips-card {
@@ -93,7 +127,9 @@
   position: relative;
   padding-left: 44px;
 }
-/* .tips-card::before { content: '💡'; } — убрано для устранения дублирования */
+/* Иконка лампочки для блока советов */
+.tips-card::before {
+  content: '💡';
   position: absolute;
   left: 16px;
   top: 22px;
@@ -135,28 +171,21 @@
   .history-card, .tips-card {
     grid-column: span 1;
   }
-}
-
-    gap: 0;
-    padding: 0 2vw 32px 2vw;
-  }
-  .calculator-col-left, .calculator-col-right {
-    min-height: unset;
-    align-items: stretch;
-  }
-  .metrics-grid-2x2 {
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin-bottom: 20px;
-  }
+  
   .calculator-header-inner {
     max-width: 98vw;
     text-align: center;
   }
 }
+@media (max-width: 900px) {
+  .calculator-header {
+    margin-top: 60px;
+  }
+}
+
 @media (max-width: 600px) {
   .calculator-header {
-    margin-top: 12px;
+    margin-top: 56px;
     margin-bottom: 4px;
   }
   .calculator-title {

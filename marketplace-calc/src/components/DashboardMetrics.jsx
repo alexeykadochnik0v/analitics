@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import CountUp from 'react-countup';
 import './DashboardMetrics.css';
 
+// Конфигурация метрик для дашборда
+
 const METRICS_CONFIG = [
   {
     key: 'netProfit',
@@ -42,12 +44,24 @@ const METRICS_CONFIG = [
   }
 ];
 
+/**
+ * Форматирует значение метрики в зависимости от ее типа
+ * @param {string} key - Ключ метрики
+ * @param {number|null} value - Значение метрики
+ * @returns {string} Отформатированное значение
+ */
 const formatValue = (key, value) => {
   if (value === undefined || value === null || isNaN(value)) return '—';
   if (key === 'margin') return `${Number(value).toFixed(2)}%`;
   return `${Number(value).toLocaleString()} ₽`;
 };
 
+/**
+ * Компонент для отображения метрик на дашборде
+ * @param {Object} props - Пропсы компонента
+ * @param {Object|null} props.results - Результаты расчетов для отображения
+ * @returns {JSX.Element} Сетка с метриками
+ */
 const DashboardMetrics = ({ results }) => {
   return (
     <div className="metrics-grid">
@@ -70,29 +84,31 @@ const DashboardMetrics = ({ results }) => {
             <div className="metric-icon" style={{ color: m.color, background: `linear-gradient(90deg, #f3f0ff 0%, ${m.color} 100%)` }}>
               {m.icon}
             </div>
-            <div className="metric-value">
-              <AnimatePresence mode="wait">
-                <motion.span
-                  key={val}
-                  initial={{ backgroundColor: '#f3f0ff' }}
-                  animate={{ backgroundColor: 'rgba(176,255,56,0.13)' }}
-                  exit={{ backgroundColor: '#f3f0ff' }}
-                  transition={{ duration: 0.7 }}
-                  style={{ display: 'inline-block', borderRadius: 8, padding: '0 6px' }}
-                >
-                  <CountUp
-                    end={typeof val === 'number' ? val : 0}
-                    duration={1.2}
-                    separator=" "
-                    decimals={m.key === 'margin' ? 2 : 0}
-                    preserveValue
-                    formattingFn={v => (val === undefined || val === null || isNaN(val)) ? m.placeholder : (m.key === 'margin' ? `${v}%` : `${Number(v).toLocaleString()} ₽`)}
-                  />
-                </motion.span>
-              </AnimatePresence>
+            <div className="metric-content">
+              <div className="metric-value">
+                <AnimatePresence mode="wait">
+                  <motion.span
+                    key={val}
+                    initial={{ backgroundColor: '#f3f0ff' }}
+                    animate={{ backgroundColor: 'rgba(176,255,56,0.13)' }}
+                    exit={{ backgroundColor: '#f3f0ff' }}
+                    transition={{ duration: 0.7 }}
+                    style={{ display: 'inline-block', borderRadius: 8, padding: '0 6px' }}
+                  >
+                    <CountUp
+                      end={typeof val === 'number' ? val : 0}
+                      duration={1.2}
+                      separator=" "
+                      decimals={m.key === 'margin' ? 2 : 0}
+                      preserveValue
+                      formattingFn={v => (val === undefined || val === null || isNaN(val)) ? m.placeholder : (m.key === 'margin' ? `${v}%` : `${Number(v).toLocaleString()} ₽`)}
+                    />
+                  </motion.span>
+                </AnimatePresence>
+              </div>
+              <div className="metric-label">{m.label}</div>
+              <div className="metric-tooltip">{m.tooltip}</div>
             </div>
-            <div className="metric-label">{m.label}</div>
-            <div className="metric-tooltip">{m.tooltip}</div>
           </motion.div>
         );
       })}

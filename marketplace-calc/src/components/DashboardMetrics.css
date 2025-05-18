@@ -1,88 +1,136 @@
+/* Сетка для KPI метрик */
 .metrics-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 36px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
   margin-bottom: 40px;
   width: 100%;
   max-width: 100%;
   align-items: stretch;
 }
 
+/* Адаптивные стили для разных размеров экрана */
 @media (min-width: 1200px) {
   .metrics-grid {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 40px;
+    gap: 32px;
     max-width: 1560px;
   }
 }
 
 @media (max-width: 1199px) and (min-width: 900px) {
   .metrics-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 28px;
-    max-width: 760px;
+    gap: 20px;
   }
 }
 
 @media (max-width: 899px) and (min-width: 600px) {
   .metrics-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    gap: 16px;
   }
 }
 
 @media (max-width: 599px) {
   .metrics-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  
+  .metric-card {
+    padding: 16px 12px;
+    min-height: 120px;
+  }
+  
+  .metric-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+  }
+  
+  .metric-value {
+    font-size: 1.8rem;
+    margin-bottom: 4px;
+  }
+  
+  .metric-label {
+    font-size: 0.85rem;
   }
 }
 
+@media (max-width: 400px) {
+  .metrics-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  
+  .metric-card {
+    padding: 16px;
+    min-height: 90px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: left;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  }
+  
+  .metric-icon {
+    margin-bottom: 0;
+    margin-right: 16px;
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    font-size: 1.5rem;
+  }
+  
+  .metric-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .metric-value {
+    font-size: 1.5rem;
+    margin-bottom: 2px;
+  }
+  
+  .metric-label {
+    font-size: 0.8rem;
+    opacity: 0.8;
+  }
+}
+
+/* Карточка метрики */
 .metric-card {
-  background: var(--metric-bg, #fff);
-  border: 2.5px solid var(--metric-color, #b0ff38);
-  border-radius: 22px;
-  padding: 28px 24px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  box-shadow: 0 4px 18px 0 rgba(90,80,200,0.10);
-  min-width: 220px;
-  max-width: 360px;
-  padding: 32px 24px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+  padding: 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-shadow: 0 4px 18px 0 rgba(90,80,200,0.10);
-  min-width: 200px;
-  min-height: 140px;
-  transition: box-shadow 0.22s, border-color 0.22s, transform 0.18s;
-  cursor: pointer;
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s, border-left 0.2s;
   position: relative;
-  justify-content: center;
+  overflow: hidden;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
+
+/* Эффекты при наведении и нажатии */
 .metric-card:hover {
   box-shadow: 0 8px 32px 0 rgba(90,80,200,0.13);
-  border-color: var(--metric-color, #7c3aed);
-  transform: translateY(-3px) scale(1.035);
+  border-left: 3px solid var(--metric-color, #7c3aed);
+  transform: translateY(-4px) scale(1.03);
   z-index: 2;
-}
-.metric-card:active {
-  transform: scale(0.98);
 }
 
 .metric-card:active {
   transform: scale(0.98);
+  transition: transform 0.1s;
 }
-.metric-card:hover {
-  box-shadow: 0 8px 32px 0 rgba(90,80,200,0.13);
-  border-left: 7px solid var(--metric-color, #7c3aed);
-  transform: translateY(-4px) scale(1.03);
-  z-index: 2;
-}
-.metric-card:active {
-  transform: scale(0.98);
-}
+/* Иконка метрики */
 .metric-icon {
   width: 48px;
   height: 48px;
@@ -93,15 +141,23 @@
   background: linear-gradient(90deg, #f3f0ff 0%, #b0ff38 100%);
   font-size: 2.2rem;
   margin-bottom: 0.7rem;
-  margin-right: 0.6rem;
   color: var(--metric-color, #b0ff38);
   box-shadow: 0 1px 4px 0 rgba(176,255,56,0.10);
   transition: background 0.18s, color 0.18s;
 }
+
+/* Эффект при наведении на карточку */
 .metric-card:hover .metric-icon {
   background: linear-gradient(90deg, #b0ff38 0%, #7c3aed 100%);
   color: #fff;
 }
+.metric-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
 .metric-value {
   font-size: 2.35rem;
   font-weight: 800;

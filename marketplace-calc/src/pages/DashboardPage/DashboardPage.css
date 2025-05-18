@@ -22,15 +22,15 @@
 
 @media (max-width: 900px) {
   .dashboard-root {
-    padding: 20px 32px 32px;
+    padding: 70px 32px 32px;
     gap: 28px;
   }
 }
 
 @media (max-width: 600px) {
   .dashboard-root {
-    padding: 16px 24px 24px;
-    gap: 24px;
+    padding: 66px 20px 24px;
+    gap: 20px;
   }
 }
 
@@ -48,6 +48,7 @@
   gap: 32px;
   width: 100%;
   margin-bottom: 24px;
+  overflow: hidden;
 }
 
 /* Контейнер графика */
@@ -157,6 +158,13 @@
   }
 }
 
+@media (max-width: 1100px) {
+  .dashboard-main-section {
+    grid-template-columns: 1fr 320px;
+    gap: 24px;
+  }
+}
+
 @media (max-width: 900px) {
   .dashboard-main-section {
     grid-template-columns: 1fr;
@@ -182,11 +190,24 @@
 @media (max-width: 600px) {
   .dashboard-chart-container {
     padding: 20px 16px;
+    min-height: 300px;
+  }
+  
+  .dashboard-chart-header {
+    margin-bottom: 12px;
+  }
+  
+  .dashboard-chart-tabs {
+    gap: 8px;
+    flex-wrap: wrap;
   }
   
   .dashboard-chart-tab {
     padding: 8px 12px;
-    font-size: 14px;
+    font-size: 13px;
+    flex: 1;
+    min-width: 80px;
+    justify-content: center;
   }
   
   .tab-icon {
@@ -195,10 +216,43 @@
   
   .dashboard-history-container {
     padding: 20px 16px;
+    min-height: 280px;
   }
   
   .dashboard-calendar-section {
     padding: 20px 16px;
+    min-height: 300px;
+  }
+  
+  .history-list-item {
+    padding: 12px;
+  }
+  
+  .history-item-title {
+    font-size: 14px;
+  }
+  
+  .history-item-profit {
+    font-size: 16px;
+  }
+  
+  .history-item-margin {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 400px) {
+  .dashboard-chart-tab {
+    padding: 6px 8px;
+    font-size: 12px;
+  }
+  
+  .tab-icon {
+    font-size: 14px;
+  }
+  
+  .dashboard-chart-content {
+    min-height: 260px;
   }
 }
 
@@ -295,3 +349,4 @@
   text-align: center;
   padding: 24px 0;
 }
+

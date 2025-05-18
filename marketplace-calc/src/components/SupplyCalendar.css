@@ -261,11 +261,25 @@
 @media (max-width: 900px) {
   .calendar-content {
     grid-template-columns: 1fr;
-    gap: 24px;
   }
   
-  .calendar-events {
-    max-width: 100%;
+  .calendar-upcoming {
+    margin-top: 16px;
+  }
+  
+  .calendar-widget .ant-picker-content th {
+    font-size: 12px;
+    padding: 8px 0;
+  }
+  
+  .calendar-widget .ant-picker-content td {
+    height: 40px;
+  }
+  
+  .calendar-widget .ant-picker-cell-inner {
+    font-size: 14px;
+    height: 32px;
+    width: 32px;
   }
   
   .calendar-upcoming-list {
@@ -276,7 +290,57 @@
 }
 
 @media (max-width: 600px) {
+  .calendar-container {
+    padding: 16px;
+  }
+  
+  .calendar-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  
+  .calendar-controls {
+    align-self: flex-end;
+  }
+  
   .calendar-upcoming-list {
     grid-template-columns: 1fr;
+  }
+  
+  .calendar-widget .ant-picker-content th {
+    font-size: 11px;
+    padding: 6px 0;
+  }
+  
+  .calendar-widget .ant-picker-content td {
+    height: 36px;
+  }
+  
+  .calendar-widget .ant-picker-cell-inner {
+    font-size: 12px;
+    height: 28px;
+    width: 28px;
+  }
+  
+  .calendar-upcoming-item {
+    padding: 8px;
+  }
+  
+  .calendar-upcoming-icon {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .calendar-upcoming-title-text {
+    font-size: 12px;
+  }
+  
+  .calendar-upcoming-date {
+    font-size: 11px;
+  }
+  
+  .calendar-upcoming-comment {
+    font-size: 11px;
   }
 }
