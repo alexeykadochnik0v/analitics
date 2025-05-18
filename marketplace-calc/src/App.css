@@ -40,8 +40,10 @@ body {
 /* Responsive layout */
 @media (min-width: 901px) {
   .main-content.with-expanded-sidebar {
-    margin-left: 200px; /* Ширина развернутого сайдбара */
-    width: calc(100% - 200px);
+    margin-left: 0;
+    width: 100%;
+    max-width: none;
+    padding: 0;
   }
 }
 

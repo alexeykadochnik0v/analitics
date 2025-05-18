@@ -19,6 +19,21 @@
   padding-right: 8px;
 }
 
+@media (max-width: 600px) {
+  .dashboard-block-list {
+    max-height: 280px;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 400px) {
+  .dashboard-block-list {
+    max-height: 240px;
+    gap: 6px;
+    padding-right: 4px;
+  }
+}
+
 .history-list-item {
   display: flex;
   flex-direction: column;
@@ -47,6 +62,38 @@
   font-weight: 600;
   color: #232946;
   margin-bottom: 8px;
+}
+
+@media (max-width: 600px) {
+  .history-list-item {
+    padding: 12px;
+    border-radius: 10px;
+  }
+  
+  .history-list-item:hover {
+    transform: none;
+  }
+  
+  .history-item-title {
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
+}
+
+@media (max-width: 400px) {
+  .history-list-item {
+    padding: 10px;
+    border-radius: 8px;
+  }
+  
+  .history-item-num {
+    font-size: 11px;
+  }
+  
+  .history-item-title {
+    font-size: 13px;
+    margin-bottom: 4px;
+  }
 }
 
 .history-item-profit {

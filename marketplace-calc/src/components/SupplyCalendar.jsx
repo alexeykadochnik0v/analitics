@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Calendar, Badge, Modal, Button, Form, Input, Select, DatePicker, Tooltip } from 'antd';
+import { Calendar, Modal, Button, Form, Input, Select, DatePicker } from 'antd';
 import dayjs from 'dayjs';
-import { FaTruck, FaBoxOpen, FaCreditCard, FaExclamationTriangle, FaCalendarAlt, FaPlus, FaEdit, FaTrash } from 'react-icons/fa';
+import { FaTruck, FaBoxOpen, FaCreditCard, FaExclamationTriangle, FaCalendarAlt } from 'react-icons/fa';
 import './SupplyCalendar.css';
 
 const EVENT_TYPES = [
-  { value: 'arrival', label: 'Привоз', icon: <FaTruck />, color: '#a6ff4d' },
-  { value: 'shipment', label: 'Отгрузка', icon: <FaBoxOpen />, color: '#b490ff' },
-  { value: 'payment', label: 'Оплата', icon: <FaCreditCard />, color: '#3b82f6' },
-  { value: 'warning', label: 'Важно', icon: <FaExclamationTriangle />, color: '#ffadad' },
+  { value: 'order', label: 'Заказ товара', icon: <FaBoxOpen />, color: '#b490ff' },
+  { value: 'warehouse', label: 'Доставлено на склад', icon: <FaTruck />, color: '#a6ff4d' },
+  { value: 'arrival', label: 'Доставлено в город', icon: <FaTruck />, color: '#3b82f6' },
+  { value: 'payment', label: 'Оплата', icon: <FaCreditCard />, color: '#ffadad' },
+  { value: 'warning', label: 'Важно', icon: <FaExclamationTriangle />, color: '#ff7e67' },
 ];
 
 const SupplyCalendar = () => {
@@ -30,11 +31,12 @@ const SupplyCalendar = () => {
     localStorage.setItem('mpcalc_supplyEvents', JSON.stringify(events));
   }, [events]);
 
-  // Список событий на ближайшие 7 дней
+  // Список событий на ближайшие дни
   const upcoming = events
-    .filter(e => dayjs(e.date).isAfter(dayjs().subtract(1, 'day')) && dayjs(e.date).isBefore(dayjs().add(8, 'day')))
+    .filter(e => dayjs(e.date).isAfter(dayjs().subtract(1, 'day')) && dayjs(e.date).isBefore(dayjs().add(15, 'day')))
     .sort((a, b) => dayjs(a.date) - dayjs(b.date));
 
+  // Функция для отображения событий в ячейках календаря
   const cellRender = (current, info) => {
     if (info.type !== 'date') return null;
     
@@ -43,28 +45,12 @@ const SupplyCalendar = () => {
     
     if (dateEvents.length === 0) return null;
     
-    // Если есть события, добавляем специальный класс для ячейки с событиями
-    const eventTypes = dateEvents.map(event => {
-      return EVENT_TYPES.find(type => type.value === event.type) || EVENT_TYPES[0];
-    });
+    // Получаем тип первого события для этой даты
+    const eventType = EVENT_TYPES.find(type => type.value === dateEvents[0].type) || EVENT_TYPES[0];
     
+    // Добавляем точку для дней с событиями
     return (
-      <div className="calendar-cell-with-events">
-        {eventTypes.slice(0, 2).map((eventType, index) => (
-          <div 
-            key={index} 
-            className="calendar-event-dot"
-            style={{ backgroundColor: eventType.color }}
-            onClick={(e) => {
-              e.stopPropagation();
-              handleEventClick(dateEvents[index]);
-            }}
-          />
-        ))}
-        {dateEvents.length > 2 && (
-          <div className="calendar-event-more">+{dateEvents.length - 2}</div>
-        )}
-      </div>
+      <div className="calendar-cell-dot" style={{ backgroundColor: eventType.color }} />
     );
   };
 
@@ -133,10 +119,10 @@ const SupplyCalendar = () => {
   };
 
   return (
-    <div className="calendar-container">
+    <div className="supply-calendar">
       <div className="calendar-header">
         <h3 className="calendar-title">
-          <FaCalendarAlt style={{ marginRight: '8px' }} />
+          <FaCalendarAlt className="calendar-icon" />
           Календарь поставок
         </h3>
         <div className="calendar-controls">
@@ -146,7 +132,7 @@ const SupplyCalendar = () => {
           >
             ←
           </button>
-          <span className="calendar-current-month">
+          <span className="calendar-month">
             {currentMonth.format('MMMM YYYY')}
           </span>
           <button 
@@ -158,8 +144,8 @@ const SupplyCalendar = () => {
         </div>
       </div>
       
-      <div className="calendar-content">
-        <div className="calendar-main">
+      <div className="calendar-layout">
+        <div className="calendar-grid">
           <Calendar
             cellRender={cellRender}
             fullscreen={false}
@@ -171,29 +157,33 @@ const SupplyCalendar = () => {
           />
         </div>
         
-        <div className="calendar-events">
-          <h4 className="calendar-events-title">Ближайшие события:</h4>
-          <ul className="calendar-upcoming-list">
+        <div className="upcoming-events">
+          <h4 className="upcoming-title">Ближайшие события:</h4>
+          <div className="event-list">
             {upcoming.length === 0 && (
-              <li className="calendar-upcoming-empty">
-                Нет событий на ближайшую неделю
-              </li>
+              <div className="no-events">
+                Нет событий на ближайшие дни
+              </div>
             )}
-            {upcoming.slice(0, 4).map(e => (
-              <li key={e.id} className="calendar-upcoming-item">
-                <span className="calendar-upcoming-icon">{EVENT_TYPES.find(t => t.value === e.type)?.icon}</span>
-                <div className="calendar-upcoming-content">
-                  <div className="calendar-upcoming-header">
-                    <span className="calendar-upcoming-date" style={{ color: e.color }}>
-                      {dayjs(e.date).format('DD.MM')}
-                    </span>
-                    <span className="calendar-upcoming-title-text">{e.title}</span>
+            {upcoming.slice(0, 4).map(e => {
+              const eventType = EVENT_TYPES.find(t => t.value === e.type) || EVENT_TYPES[0];
+              return (
+                <div 
+                  key={e.id} 
+                  className="event-item"
+                  onClick={() => handleEventClick(e)}
+                >
+                  <div className="event-date">{dayjs(e.date).format('DD.MM')}</div>
+                  <div className="event-content">
+                    <div className="event-icon" style={{ color: eventType.color }}>
+                      {eventType.icon}
+                    </div>
+                    <div className="event-title">{e.title}</div>
                   </div>
-                  {e.description && <span className="calendar-upcoming-comment">{e.description}</span>}
                 </div>
-              </li>
-            ))}
-          </ul>
+              );
+            })}
+          </div>
         </div>
       </div>
       <Modal

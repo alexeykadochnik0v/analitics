@@ -57,12 +57,34 @@ const CalculatorPage = ({ user }) => {
   const [isSaving, setIsSaving] = useState(false);
   const [saveSuccess, setSaveSuccess] = useState(false);
   const [saveError, setSaveError] = useState(null);
+  const [history, setHistory] = useState(() => {
+    try {
+      return JSON.parse(localStorage.getItem('mpcalc_lastResults') || '[]');
+    } catch {
+      return [];
+    }
+  });
+
+  useEffect(() => {
+    const update = () => {
+      try {
+        setHistory(JSON.parse(localStorage.getItem('mpcalc_lastResults') || '[]'));
+      } catch {
+        setHistory([]);
+      }
+    };
+    window.addEventListener('storage', update);
+    window.addEventListener('focus', update);
+    return () => {
+      window.removeEventListener('storage', update);
+      window.removeEventListener('focus', update);
+    };
+  }, []);
 
   return (
     <div className="calculator-page">
       <div className="calculator-main-grid">
         <div className="calculator-col-left">
-          
           <div className="calculator-card">
             <CalcCard
               form={form}
@@ -84,9 +106,11 @@ const CalculatorPage = ({ user }) => {
           </div>
         </div>
         <div className="calculator-col-right">
-          <DashboardMetrics results={results} />
+          <div className="kpi-wide">
+            <DashboardMetrics results={results} />
+          </div>
           <div className="history-card">
-            <HistoryBlock />
+            <HistoryBlock history={history} />
           </div>
           <TipsBlock />
         </div>

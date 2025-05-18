@@ -1,10 +1,16 @@
-.calendar-container {
+/* Основной контейнер календаря */
+.supply-calendar {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  padding: 16px 24px;
+  overflow: hidden;
 }
 
+/* Заголовок календаря */
 .calendar-header {
   display: flex;
   justify-content: space-between;
@@ -13,334 +19,173 @@
 }
 
 .calendar-title {
-  font-size: 18px;
-  font-weight: 700;
-  color: #232946;
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
   margin: 0;
   display: flex;
   align-items: center;
 }
 
+.calendar-icon {
+  color: #C0FF4A;
+  margin-right: 8px;
+  font-size: 14px;
+}
+
+/* Элементы управления календарем */
 .calendar-controls {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
 .calendar-nav-btn {
   background: none;
   border: none;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
+  width: 24px;
+  height: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 18px;
-  color: #666;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.calendar-nav-btn:hover {
-  background: rgba(124, 58, 237, 0.08);
-  color: #7c3aed;
-}
-
-.calendar-current-month {
   font-size: 16px;
-  font-weight: 600;
-  color: #232946;
-  min-width: 120px;
+  color: #333;
+  cursor: pointer;
+}
+
+.calendar-month {
+  font-size: 14px;
+  color: #333;
+  min-width: 100px;
   text-align: center;
 }
 
-.calendar-content {
+/* Основная сетка календаря */
+.calendar-layout {
   display: grid;
-  grid-template-columns: 1fr 300px;
-  gap: 24px;
+  grid-template-columns: 1fr 250px;
+  gap: 20px;
 }
 
-.calendar-main {
-  flex: 1;
+.calendar-grid {
+  background-color: #fff;
 }
 
-.calendar-events {
+.upcoming-events {
   width: 100%;
-  max-width: 300px;
 }
 
-.calendar-events-title {
-  font-size: 16px;
-  font-weight: 600;
-  color: #232946;
-  margin-bottom: 16px;
+/* Заголовок списка событий */
+.upcoming-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 12px;
   margin-top: 0;
 }
 
-.calendar-upcoming-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+/* Список ближайших событий */
+.event-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
 }
 
-.calendar-upcoming-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  padding: 12px;
-  background: #f8f9fd;
-  border-radius: 12px;
-  transition: all 0.2s ease;
-}
-
-.calendar-upcoming-item:hover {
-  background: #f0f2fd;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
-
-.calendar-upcoming-icon {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: #f0f0f0;
+/* Элемент события в списке */
+.event-item {
   display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: 16px;
+  gap: 8px;
+  padding: 8px 12px;
+  background: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+  border: 1px solid #f0f0f0;
 }
 
-.calendar-upcoming-content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
+/* Дата события */
+.event-date {
+  font-size: 13px;
+  font-weight: 500;
+  color: #333;
+  min-width: 40px;
 }
 
-.calendar-upcoming-header {
+/* Содержимое события */
+.event-content {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.calendar-upcoming-date {
+/* Иконка события */
+.event-icon {
   font-size: 14px;
-  font-weight: 700;
 }
 
-.calendar-upcoming-title-text {
-  font-size: 14px;
-  font-weight: 600;
-  color: #232946;
+/* Заголовок события */
+.event-title {
+  font-size: 13px;
+  color: #333;
 }
 
-.calendar-upcoming-comment {
-  font-size: 12px;
-  color: #666;
+/* Стили для точки в ячейке календаря */
+.calendar-cell-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  right: 2px;
 }
 
-.calendar-upcoming-empty {
-  color: #888;
-  font-size: 14px;
-  text-align: center;
-  padding: 16px 0;
+/* Стили для пустого состояния */
+.no-events {
+  font-size: 13px;
+  color: #999;
+  padding: 8px 0;
 }
 
-/* Стили для Ant Design Calendar */
+/* Стили для календаря Ant Design */
+.calendar-widget {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.calendar-widget .ant-picker-panel {
+  border: none;
+}
+
 .calendar-widget .ant-picker-calendar-header {
   display: none;
 }
 
-.calendar-widget .ant-picker-panel {
-  border-radius: 12px;
-  overflow: hidden;
-}
-
-/* Улучшение внешнего вида цифр в календаре */
 .calendar-widget .ant-picker-content th {
-  font-weight: 600;
-  font-size: 14px;
+  padding: 8px 0;
+  font-size: 12px;
   color: #666;
-  padding: 12px 0;
-}
-
-.calendar-widget .ant-picker-content td {
-  height: 48px;
-}
-
-.calendar-widget .ant-picker-cell-inner {
-  font-size: 16px;
+  text-transform: uppercase;
   font-weight: 500;
-  height: 40px;
-  width: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto;
-  border-radius: 50%;
-  transition: all 0.2s ease;
 }
 
-.calendar-widget .ant-picker-cell:hover .ant-picker-cell-inner {
-  background-color: #f0f2fd;
+.calendar-widget .ant-picker-cell {
+  padding: 2px 0;
 }
 
 .calendar-widget .ant-picker-cell-in-view.ant-picker-cell-selected .ant-picker-cell-inner {
-  background: #7c3aed;
-  color: white;
-  font-weight: 600;
-}
-
-.calendar-widget .ant-picker-cell-in-view.ant-picker-cell-today .ant-picker-cell-inner::before {
-  border-color: #7c3aed;
-}
-
-.calendar-widget .ant-picker-cell-in-view.ant-picker-cell-today .ant-picker-cell-inner {
-  color: #7c3aed;
-  font-weight: 600;
-}
-
-/* Стили для неактивных дней */
-.calendar-widget .ant-picker-cell:not(.ant-picker-cell-in-view) .ant-picker-cell-inner {
-  color: #ccc;
-  opacity: 0.5;
-}
-
-/* Стили для точек поставок */
-.calendar-cell-with-events {
-  position: absolute;
-  bottom: 2px;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: center;
-  gap: 4px;
-  align-items: center;
-}
-
-.calendar-event-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.calendar-event-dot:hover {
-  transform: scale(1.5);
-}
-
-.calendar-event-more {
-  font-size: 10px;
-  color: #7c3aed;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.ant-badge-status-dot {
-  width: 8px;
-  height: 8px;
+  background-color: #C0FF4A;
+  color: #333;
 }
 
 /* Адаптивность */
-@media (max-width: 1200px) {
-  .calendar-content {
-    grid-template-columns: 1fr 260px;
-    gap: 20px;
-  }
-  
-  .calendar-events {
-    max-width: 260px;
-  }
-}
-
-@media (max-width: 900px) {
-  .calendar-content {
+@media (max-width: 768px) {
+  .calendar-layout {
     grid-template-columns: 1fr;
   }
   
-  .calendar-upcoming {
-    margin-top: 16px;
-  }
-  
-  .calendar-widget .ant-picker-content th {
-    font-size: 12px;
-    padding: 8px 0;
-  }
-  
-  .calendar-widget .ant-picker-content td {
-    height: 40px;
-  }
-  
-  .calendar-widget .ant-picker-cell-inner {
-    font-size: 14px;
-    height: 32px;
-    width: 32px;
-  }
-  
-  .calendar-upcoming-list {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
+  .upcoming-events {
+    margin-top: 20px;
   }
 }
+  
 
-@media (max-width: 600px) {
-  .calendar-container {
-    padding: 16px;
-  }
-  
-  .calendar-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
-  }
-  
-  .calendar-controls {
-    align-self: flex-end;
-  }
-  
-  .calendar-upcoming-list {
-    grid-template-columns: 1fr;
-  }
-  
-  .calendar-widget .ant-picker-content th {
-    font-size: 11px;
-    padding: 6px 0;
-  }
-  
-  .calendar-widget .ant-picker-content td {
-    height: 36px;
-  }
-  
-  .calendar-widget .ant-picker-cell-inner {
-    font-size: 12px;
-    height: 28px;
-    width: 28px;
-  }
-  
-  .calendar-upcoming-item {
-    padding: 8px;
-  }
-  
-  .calendar-upcoming-icon {
-    width: 20px;
-    height: 20px;
-  }
-  
-  .calendar-upcoming-title-text {
-    font-size: 12px;
-  }
-  
-  .calendar-upcoming-date {
-    font-size: 11px;
-  }
-  
-  .calendar-upcoming-comment {
-    font-size: 11px;
-  }
-}

@@ -8,7 +8,6 @@
 }
 
 .calculator-header-inner {
-  max-width: 520px;
   width: 100%;
   text-align: left;
 }
@@ -30,13 +29,188 @@
 }
 .calculator-main-grid {
   display: grid;
-  grid-template-columns: 1.1fr 1fr;
+  grid-template-columns: 3fr 2fr;
   gap: 40px;
-  max-width: 1300px;
-  margin: 0 auto;
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto 0 32px;
   align-items: flex-start;
-  padding: 0 24px 64px 24px;
+  padding-top: 40px;
+  padding-bottom: 0;
+  padding-left: 0;
+  padding-right: 0;
 }
+
+@media (min-width: 1200px) {
+  .calculator-main-grid {
+    margin: 0 auto;
+  }
+}
+
+.calculator-card {
+  background: #fff;
+  border-radius: 24px;
+  box-shadow: 0 4px 32px 0 rgba(124,58,237,0.06);
+  max-width: 700px;
+  width: 100%;
+  padding: 28px 18px 22px 18px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.kpi-wide {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 1400px) {
+  .calculator-main-grid {
+    max-width: 1600px;
+    gap: 24px;
+  }
+  .calculator-card {
+    width: 100%;
+    padding: 18px 8px 14px 8px;
+    margin: 0;
+  }
+}
+
+@media (max-width: 1100px) {
+  .calculator-main-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    max-width: 100vw;
+  }
+  .calculator-card {
+    width: 100%;
+    margin: 0;
+  }
+  .kpi-wide {
+    margin-bottom: 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  .calculator-main-grid {
+    padding: 0;
+    margin: 0;
+    gap: 16px;
+    width: 100%;
+  }
+  .calculator-card {
+    width: 100%;
+    padding: 16px 12px;
+    border-radius: 16px;
+    margin: 0;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+  }
+  .kpi-wide {
+    margin-bottom: 12px;
+  }
+  
+  /* Исправления для полей ввода */
+  .ant-form-item {
+    margin-bottom: 12px;
+  }
+  
+  .ant-input,
+  .ant-input-affix-wrapper {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+  
+  /* Исправления для кнопок */
+  .ant-btn {
+    height: 40px;
+    font-size: 15px;
+    padding: 0 16px;
+  }
+  
+  /* Исправления для заголовков */
+  .calculator-title {
+    font-size: 1.5rem;
+  }
+  
+  .calculator-subtitle {
+    font-size: 0.9rem;
+  }
+}
+
+/* Дополнительные стили для очень маленьких экранов */
+@media (max-width: 400px) {
+  .calculator-card {
+    padding: 12px 8px;
+    border-radius: 12px;
+  }
+  
+  .ant-form-item-label > label {
+    font-size: 13px;
+  }
+  
+  .ant-input,
+  .ant-input-affix-wrapper {
+    font-size: 13px;
+    padding: 6px 10px;
+  }
+  
+  .ant-btn {
+    height: 36px;
+    font-size: 14px;
+  }
+  
+  .calculator-title {
+    font-size: 1.3rem;
+    margin-bottom: 0.1em;
+  }
+  
+  .calculator-subtitle {
+    font-size: 0.85rem;
+    margin-bottom: 0.4em;
+  }
+}
+
+
+.calculator-col-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto 0 0;
+  gap: 36px;
+}
+
+.kpi-wide {
+  width: 100%;
+  margin-bottom: 32px;
+}
+
+@media (max-width: 1100px) {
+  .calculator-main-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .calculator-col-center {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  .kpi-wide {
+    margin-bottom: 24px;
+  }
+}
+
+@media (max-width: 600px) {
+  .calculator-main-grid {
+    padding: 0 16px 40px 16px;
+    gap: 24px;
+  }
+  .kpi-wide {
+    margin-bottom: 16px;
+  }
+}
+
 
 @media (max-width: 1100px) {
   .calculator-main-grid {
@@ -54,11 +228,11 @@
 .calculator-col-left {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  max-width: 600px;
+  align-items: stretch;
   width: 100%;
   gap: 36px;
-  margin: 0 auto;
+  margin: 0;
+  padding: 0;
 }
 
 @media (max-width: 600px) {
@@ -68,14 +242,22 @@
 }
 
 .calculator-col-right {
-  max-width: 600px;
   width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  min-width: 320px;
+  display: flex;
+  flex-direction: column;
   gap: 32px;
   align-items: stretch;
-  margin: 0 auto;
+  margin: 0;
+  padding: 0;
 }
+
+
+.kpi-wide {
+  width: 100%;
+  margin-bottom: 24px;
+}
+
 
 @media (max-width: 600px) {
   .calculator-col-right {
@@ -88,13 +270,12 @@
   background: #fff;
   border-radius: 28px;
   box-shadow: 0 4px 32px 0 rgba(124,58,237,0.06);
-  max-width: 520px;
   width: 100%;
-  padding: 32px 24px 28px 24px;
-  margin: 0 auto;
+  padding: 20px 12px 18px 12px;
+  margin: 0;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
 }
 
 @media (max-width: 600px) {
