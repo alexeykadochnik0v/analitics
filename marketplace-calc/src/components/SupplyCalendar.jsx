@@ -200,12 +200,35 @@ const SupplyCalendar = () => {
         title={isEditMode ? "Редактировать событие" : "Добавить событие"}
         open={isModalVisible}
         onCancel={() => setIsModalVisible(false)}
-        footer={null}
+        footer={[
+          <Button key="cancel" onClick={() => setIsModalVisible(false)}>
+            Отмена
+          </Button>,
+          <Button 
+            key="submit" 
+            type="primary" 
+            onClick={() => form.submit()}
+            style={{ background: '#C0FF4A', color: '#232946' }}
+          >
+            {isEditMode ? 'Сохранить' : 'Добавить'}
+          </Button>,
+          isEditMode && (
+            <Button 
+              key="delete" 
+              danger 
+              onClick={handleDeleteEvent}
+              style={{ marginLeft: '8px' }}
+            >
+              Удалить
+            </Button>
+          )
+        ].filter(Boolean)}
       >
         <Form
           layout="vertical"
           form={form}
           onFinish={handleSubmit}
+          style={{ marginTop: '16px' }}
         >
           <Form.Item label="Дата" name="date" rules={[{ required: true, message: 'Укажите дату' }]}>
             <DatePicker format="DD.MM.YYYY" style={{ width: '100%' }} />
