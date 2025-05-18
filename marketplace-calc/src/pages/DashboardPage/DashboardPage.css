@@ -1,0 +1,297 @@
+/* Основной контейнер дашборда */
+.dashboard-root {
+  width: 100%;
+  max-width: 1800px;
+  min-width: 320px;
+  margin: 0 auto;
+  padding: 32px 48px 40px;
+  box-sizing: border-box;
+  background: none;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+/* Адаптивные отступы */
+@media (max-width: 1200px) {
+  .dashboard-root {
+    padding: 24px 40px 32px;
+    gap: 32px;
+  }
+}
+
+@media (max-width: 900px) {
+  .dashboard-root {
+    padding: 20px 32px 32px;
+    gap: 28px;
+  }
+}
+
+@media (max-width: 600px) {
+  .dashboard-root {
+    padding: 16px 24px 24px;
+    gap: 24px;
+  }
+}
+
+/* Секция KPI-карточек */
+.dashboard-kpi-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Основная секция с графиком и историей */
+.dashboard-main-section {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  gap: 32px;
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+/* Контейнер графика */
+.dashboard-chart-container {
+  background: #fff;
+  border-radius: 24px;
+  box-shadow: 0 6px 24px 0 rgba(80, 80, 180, 0.07);
+  padding: 32px;
+  min-height: 400px;
+  max-width: 1300px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Заголовок графика с вкладками */
+.dashboard-chart-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 16px;
+}
+
+/* Вкладки графика */
+.dashboard-chart-tabs {
+  display: flex;
+  gap: 16px;
+}
+
+.dashboard-chart-tab {
+  background: none;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dashboard-chart-tab:hover {
+  background: rgba(124, 58, 237, 0.08);
+  color: #7c3aed;
+}
+
+.dashboard-chart-tab.active {
+  background: rgba(124, 58, 237, 0.12);
+  color: #7c3aed;
+}
+
+.tab-icon {
+  font-size: 18px;
+}
+
+/* Содержимое графика */
+.dashboard-chart-content {
+  flex: 1;
+  min-height: 340px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Контейнер истории */
+.dashboard-history-container {
+  background: #fff;
+  border-radius: 24px;
+  box-shadow: 0 6px 24px 0 rgba(80, 80, 180, 0.07);
+  padding: 28px 24px;
+  width: 100%;
+  min-width: 330px;
+  max-width: 390px;
+  height: 100%;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Секция календаря */
+.dashboard-calendar-section {
+  background: #fff;
+  border-radius: 24px;
+  box-shadow: 0 6px 24px 0 rgba(80, 80, 180, 0.07);
+  padding: 32px;
+  width: 100%;
+  min-height: 340px;
+  max-height: 420px;
+}
+
+/* Адаптивность */
+@media (max-width: 1200px) {
+  .dashboard-main-section {
+    grid-template-columns: minmax(0, 1fr) 340px;
+    gap: 24px;
+  }
+  
+  .dashboard-chart-container {
+    padding: 28px 24px;
+  }
+  
+  .dashboard-history-container {
+    min-width: 300px;
+  }
+}
+
+@media (max-width: 900px) {
+  .dashboard-main-section {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  
+  .dashboard-history-container {
+    max-width: 100%;
+    min-height: 300px;
+  }
+  
+  .dashboard-chart-container {
+    padding: 24px 20px;
+    min-height: 320px;
+  }
+  
+  .dashboard-calendar-section {
+    padding: 24px 20px;
+    min-height: 300px;
+  }
+}
+
+@media (max-width: 600px) {
+  .dashboard-chart-container {
+    padding: 20px 16px;
+  }
+  
+  .dashboard-chart-tab {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+  
+  .tab-icon {
+    font-size: 16px;
+  }
+  
+  .dashboard-history-container {
+    padding: 20px 16px;
+  }
+  
+  .dashboard-calendar-section {
+    padding: 20px 16px;
+  }
+}
+
+/* Стили для истории расчетов */
+.dashboard-block-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #232946;
+  margin-bottom: 16px;
+}
+
+.dashboard-block-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow-y: auto;
+  max-height: 320px;
+  padding-right: 4px;
+}
+
+.history-list-item {
+  display: flex;
+  flex-direction: column;
+  padding: 12px 16px;
+  background: #f8f9fd;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.history-list-item:hover {
+  background: #f0f2fd;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.history-item-num {
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 4px;
+}
+
+.history-item-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #232946;
+  margin-bottom: 8px;
+}
+
+.history-item-profit {
+  font-size: 18px;
+  font-weight: 700;
+  color: #2ecc40;
+  margin-bottom: 4px;
+}
+
+.history-item-margin {
+  font-size: 15px;
+  font-weight: 600;
+  color: #a259ff;
+}
+
+.history-item-date {
+  font-size: 12px;
+  color: #888;
+  margin-top: 6px;
+  align-self: flex-end;
+}
+
+.history-more-btn {
+  background: none;
+  border: none;
+  color: #7c3aed;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 16px;
+  margin-top: 12px;
+  cursor: pointer;
+  align-self: center;
+  transition: all 0.2s ease;
+  border-radius: 8px;
+}
+
+.history-more-btn:hover {
+  background: rgba(124, 58, 237, 0.08);
+}
+
+.dashboard-block-placeholder {
+  color: #888;
+  font-size: 14px;
+  text-align: center;
+  padding: 24px 0;
+}

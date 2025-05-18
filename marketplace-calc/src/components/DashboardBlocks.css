@@ -1,0 +1,132 @@
+.dashboard-block {
+  background: #fff;
+  border-radius: 24px;
+  box-shadow: 0 2px 16px rgba(120,120,200,0.07);
+  padding: 32px 28px;
+  margin-bottom: 28px;
+  border: none;
+  min-width: 0;
+  transition: box-shadow 0.18s, border-color 0.18s;
+}
+.dashboard-block:hover {
+  box-shadow: 0 8px 32px rgba(170,190,255,0.12);
+}
+
+.dashboard-block-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 18px;
+  color: #23234c;
+}
+
+.dashboard-block-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.dashboard-block-list-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0 8px 0;
+  border-radius: 12px;
+  transition: background 0.18s, box-shadow 0.18s, border-color 0.18s;
+  cursor: pointer;
+}
+.dashboard-block-list-item:hover {
+  background: #f6f8fb;
+  box-shadow: 8px 0 24px 0 #b0aaff22;
+  border-right: 4px solid #b0ff38;
+}
+
+.history-block-polished {
+  max-width: 600px;
+  margin-bottom: 40px;
+}
+.history-list-item {
+  min-height: 54px;
+  align-items: flex-start;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px 0 rgba(124,58,237,0.03);
+  padding: 18px 20px;
+  border-right: 4px solid transparent;
+  transition: box-shadow 0.18s, border-color 0.18s, background 0.18s;
+}
+.history-list-item:hover {
+  background: #f6f4ff;
+  box-shadow: 8px 0 24px 0 #b0aaff22;
+  border-right: 4px solid #b0ff38;
+}
+
+.dashboard-block-placeholder {
+  color: #bbb;
+  text-align: center;
+  padding: 18px 0 10px 0;
+  font-size: 1.08rem;
+}
+
+.dashboard-block-tip-icon {
+  font-size: 1.3rem;
+  color: #ffe066;
+  margin-right: 8px;
+}
+
+.dashboard-block-tip-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.dashboard-block-tip-item, .tip-list-item {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 8px 0;
+  border-radius: 10px;
+  transition: background 0.18s, box-shadow 0.18s;
+  cursor: pointer;
+  line-height: 1.5;
+}
+.dashboard-block-tip-item:hover, .tip-list-item:hover {
+  background: #f6f4ff;
+  box-shadow: 8px 0 24px 0 #b0aaff22;
+}
+
+.tips-block-polished {
+  max-width: 600px;
+  margin-bottom: 38px;
+  border: none !important;
+  box-shadow: none !important;
+}
+.tip-checkbox {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  border: 2.5px solid #e6e6e6;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 7px;
+  transition: border 0.18s, background 0.18s, box-shadow 0.18s;
+}
+@media (max-width: 700px) {
+  .dashboard-block, .tips-block-polished, .history-block-polished {
+    max-width: 100%;
+    min-width: 0;
+    padding: 20px 8px;
+  }
+  .metric-card {
+    min-width: unset !important;
+    width: 100%;
+    margin-bottom: 18px;
+  }
+}

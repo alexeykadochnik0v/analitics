@@ -1,0 +1,260 @@
+.dashboard-welcome {
+  background: #fff;
+  border-radius: 26px;
+  box-shadow: 0 6px 24px 0 rgba(80,80,180,0.07);
+  padding: 40px;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  margin-bottom: 48px;
+  min-height: 140px;
+  gap: 40px;
+  position: relative;
+}
+.dashboard-welcome::after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0; right: 0; bottom: 0; height: 32px;
+  pointer-events: none;
+  border-radius: 0 0 26px 26px;
+  background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(80,80,180,0.10) 100%);
+  z-index: 3;
+}
+.welcome-block {
+  flex: 1;
+}
+.welcome-title {
+  font-family: 'Inter', 'Manrope', 'Mulish', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  color: #21233b;
+}
+.welcome-accent {
+  color: #a6ff4d;
+  font-weight: 800;
+}
+.progress-bar-area {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 16px 0 0 0;
+}
+.goal-inline {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+.goal-label {
+  color: #888ca7;
+  font-weight: 600;
+  margin-right: 4px;
+}
+.goal-value {
+  color: #a6ff4d;
+  font-weight: 700;
+  font-size: 1.25rem;
+  margin-right: 10px;
+}
+.progress-percent {
+  color: #7c3aed;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-left: 6px;
+}
+.goal-value {
+  color: #a6ff4d;
+  font-weight: 700;
+  margin-left: 0.5em;
+}
+.progress-bar {
+  background: #f3f3fa;
+  border-radius: 8px;
+  height: 14px;
+  width: 280px;
+  margin: 18px 0 0 0;
+  position: relative;
+  overflow: hidden;
+}
+.progress-bar-fill {
+  background: linear-gradient(90deg,#a6ff4d 0%,#b490ff 100%);
+  border-radius: 8px;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  transition: width 0.4s cubic-bezier(.77,0,.18,1);
+}
+.progress-bar-value {
+  background: #21233b;
+  color: #fff;
+  font-size: 0.92rem;
+  padding: 2px 12px;
+  border-radius: 8px;
+  position: absolute;
+  top: -28px;
+  z-index: 2;
+  white-space: nowrap;
+  left: 0;
+  transform: translateX(-50%);
+  transition: left 0.4s cubic-bezier(.77,0,.18,1);
+}
+.plan-block {
+  flex: 1;
+  margin-left: 32px;
+}
+.plan-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #6f7a9e;
+  margin-bottom: 16px;
+}
+.plan-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.plan-item {
+  display: flex;
+  align-items: center;
+  font-size: 1.08rem;
+  margin-bottom: 8px;
+  transition: background 0.15s;
+  border-radius: 8px;
+  padding: 4px 10px;
+}
+.plan-item:hover {
+  background: #f3ffea;
+}
+.plan-checkbox-label {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.plan-checkbox {
+  margin-right: 14px;
+  accent-color: #a6ff4d;
+  width: 20px;
+  height: 20px;
+}
+@media (max-width: 800px) {
+  .dashboard-welcome {
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+  }
+  .plan-block {
+    margin-left: 0;
+    margin-top: 24px;
+  }
+  .progress-bar {
+    width: 100%;
+  }
+}
+.goalLabel {
+  color: #888ca7;
+  font-weight: 600;
+}
+.goalValue {
+  color: #b0ff38;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.progressPercent {
+  color: #7c3aed;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+.progressBarWrap {
+  margin-bottom: 12px;
+}
+.progressBarBg {
+  width: 260px;
+  height: 7px;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #e9e6fc 0%, #b0ff38 100%);
+  overflow: hidden;
+}
+.progressBarFill {
+  height: 100%;
+  background: linear-gradient(90deg, #b0ff38 0%, #7c3aed 100%);
+  border-radius: 8px;
+  transition: width 0.4s cubic-bezier(.4,1.1,.5,1);
+}
+.planBlock {
+  flex: 0 0 320px;
+  background: #f9fafc;
+  border-radius: 22px;
+  box-shadow: 0 2px 12px 0 rgba(176,255,56,0.07);
+  padding: 28px 22px 22px 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.planTitle {
+  font-size: 1.23rem;
+  font-weight: 700;
+  color: #23234c;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+.planIcon {
+  color: #7c3aed;
+  font-size: 1.3rem;
+}
+.planList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.planItem {
+  font-size: 1.08rem;
+  color: #23234c;
+}
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.checkbox {
+  display: none;
+}
+.customCheckbox {
+  width: 22px;
+  height: 22px;
+  border-radius: 8px;
+  border: 2.5px solid #b0ff38;
+  background: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 2px;
+  transition: border 0.18s, background 0.18s, box-shadow 0.18s;
+  position: relative;
+}
+.checkbox:checked + .customCheckbox {
+  background: #b0ff38;
+  border-color: #7c3aed;
+}
+.checkbox:checked + .customCheckbox::after {
+  content: '';
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-radius: 4px;
+  background: #7c3aed;
+  position: absolute;
+  left: 4px;
+  top: 4px;
+}

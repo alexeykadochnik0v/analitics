@@ -1,0 +1,14 @@
+.greeting-block {
+  margin-bottom: 0.5rem;
+}
+.greeting-block h1 {
+  font-size: 2.3rem;
+  font-weight: 800;
+  color: #181834;
+  margin-bottom: 0.25rem;
+}
+.greeting-desc {
+  font-size: 1.15rem;
+  color: #7c3aed;
+  font-weight: 500;
+}

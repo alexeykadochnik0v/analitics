@@ -1,0 +1,282 @@
+.calendar-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.calendar-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #232946;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.calendar-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.calendar-nav-btn {
+  background: none;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.calendar-nav-btn:hover {
+  background: rgba(124, 58, 237, 0.08);
+  color: #7c3aed;
+}
+
+.calendar-current-month {
+  font-size: 16px;
+  font-weight: 600;
+  color: #232946;
+  min-width: 120px;
+  text-align: center;
+}
+
+.calendar-content {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 24px;
+}
+
+.calendar-main {
+  flex: 1;
+}
+
+.calendar-events {
+  width: 100%;
+  max-width: 300px;
+}
+
+.calendar-events-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #232946;
+  margin-bottom: 16px;
+  margin-top: 0;
+}
+
+.calendar-upcoming-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.calendar-upcoming-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px;
+  background: #f8f9fd;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+}
+
+.calendar-upcoming-item:hover {
+  background: #f0f2fd;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.calendar-upcoming-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+
+.calendar-upcoming-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.calendar-upcoming-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.calendar-upcoming-date {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.calendar-upcoming-title-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: #232946;
+}
+
+.calendar-upcoming-comment {
+  font-size: 12px;
+  color: #666;
+}
+
+.calendar-upcoming-empty {
+  color: #888;
+  font-size: 14px;
+  text-align: center;
+  padding: 16px 0;
+}
+
+/* Стили для Ant Design Calendar */
+.calendar-widget .ant-picker-calendar-header {
+  display: none;
+}
+
+.calendar-widget .ant-picker-panel {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Улучшение внешнего вида цифр в календаре */
+.calendar-widget .ant-picker-content th {
+  font-weight: 600;
+  font-size: 14px;
+  color: #666;
+  padding: 12px 0;
+}
+
+.calendar-widget .ant-picker-content td {
+  height: 48px;
+}
+
+.calendar-widget .ant-picker-cell-inner {
+  font-size: 16px;
+  font-weight: 500;
+  height: 40px;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.calendar-widget .ant-picker-cell:hover .ant-picker-cell-inner {
+  background-color: #f0f2fd;
+}
+
+.calendar-widget .ant-picker-cell-in-view.ant-picker-cell-selected .ant-picker-cell-inner {
+  background: #7c3aed;
+  color: white;
+  font-weight: 600;
+}
+
+.calendar-widget .ant-picker-cell-in-view.ant-picker-cell-today .ant-picker-cell-inner::before {
+  border-color: #7c3aed;
+}
+
+.calendar-widget .ant-picker-cell-in-view.ant-picker-cell-today .ant-picker-cell-inner {
+  color: #7c3aed;
+  font-weight: 600;
+}
+
+/* Стили для неактивных дней */
+.calendar-widget .ant-picker-cell:not(.ant-picker-cell-in-view) .ant-picker-cell-inner {
+  color: #ccc;
+  opacity: 0.5;
+}
+
+/* Стили для точек поставок */
+.calendar-cell-with-events {
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  align-items: center;
+}
+
+.calendar-event-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.calendar-event-dot:hover {
+  transform: scale(1.5);
+}
+
+.calendar-event-more {
+  font-size: 10px;
+  color: #7c3aed;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.ant-badge-status-dot {
+  width: 8px;
+  height: 8px;
+}
+
+/* Адаптивность */
+@media (max-width: 1200px) {
+  .calendar-content {
+    grid-template-columns: 1fr 260px;
+    gap: 20px;
+  }
+  
+  .calendar-events {
+    max-width: 260px;
+  }
+}
+
+@media (max-width: 900px) {
+  .calendar-content {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  
+  .calendar-events {
+    max-width: 100%;
+  }
+  
+  .calendar-upcoming-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+}
+
+@media (max-width: 600px) {
+  .calendar-upcoming-list {
+    grid-template-columns: 1fr;
+  }
+}
